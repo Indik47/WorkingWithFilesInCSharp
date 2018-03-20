@@ -1,0 +1,10 @@
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\bin\Debug\WorkingWithFilesInCSh.exe.config
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\bin\Debug\WorkingWithFilesInCSh.exe
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\bin\Debug\WorkingWithFilesInCSh.pdb
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\obj\Debug\WorkingWithFilesInCSh.csprojResolveAssemblyReference.cache
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\obj\Debug\WorkingWithFilesInCSh.Form1.resources
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\obj\Debug\WorkingWithFilesInCSh.Properties.Resources.resources
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\obj\Debug\WorkingWithFilesInCSh.csproj.GenerateResource.Cache
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\obj\Debug\WorkingWithFilesInCSh.csproj.CoreCompileInputs.cache
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\obj\Debug\WorkingWithFilesInCSh.exe
+C:\Users\d.oligov\Documents\Visual Studio 2017\Projects\WPFfApp\WorkingWithFilesInCSh\obj\Debug\WorkingWithFilesInCSh.pdb
