@@ -14,7 +14,8 @@ namespace WorkingWithFilesInCSh
 {
     public partial class Form1 : Form
     {
-        string filePath = "C:\\Users\\d.oligov\\Csharp\\dftg.txt";
+        string filePath02 = "C:\\Users\\d.oligov\\Csharp\\dftg.txt";
+        string filePath03 = "C:\\Users\\d.oligov\\Csharp\\b.txt";
         FileStream fs;
 
         public Form1()
@@ -35,42 +36,11 @@ namespace WorkingWithFilesInCSh
             textBoxOutput.AppendText(Environment.NewLine + "Parent = " + currDir.Parent.ToString());
             textBoxOutput.AppendText(Environment.NewLine + "Attributes = " + currDir.Attributes);
             textBoxOutput.AppendText(Environment.NewLine + "Creation time = " + currDir.CreationTime);
-
-            //string directoryPath = String.Format(textBoxDirectoryPath.Text);  //get directory path from textBox
-
-            DirectoryInfo newDir = new DirectoryInfo(@"C:\Users\d.oligov\Csharp");
-            if (!newDir.Exists) { newDir.Create(); }                        //creare directory if it doesnt exist
-            
-            string filePath = newDir.FullName + "\\a.txt";
-            
-
-            string textToWrite = textBoxOutput.Text;                   //get text from textBox
-            
-            File.WriteAllText(filePath, textToWrite);                  //write it to file
-
-            //output all lines that were read from file into textBox
-            int lineCounter = 0;
-            foreach (string name in File.ReadAllLines(filePath))
-            {
-                lineCounter++;
-                textBoxOutput.AppendText(String.Format(Environment.NewLine + "{0,-20} : {1}", lineCounter, name));
-            }
-
-            //get txt files fro, directory and its subdirs
-            DirectoryInfo myDataDir = new DirectoryInfo(@"C:\Users\d.oligov\Csharp");
-            FileInfo[] txtFiles = myDataDir.GetFiles("*.txt",SearchOption.AllDirectories);
-
-            //print them out to textBoxileInfo fi in txtFiles)
-            foreach (FileInfo fi in txtFiles)
-            {
-                textBoxOutput.AppendText(Environment.NewLine + fi.FullName + " size: " + fi.Length);
-            }
-            
         }
 
         private void buttonFileStreamWrite_Click(object sender, EventArgs e)
         {
-            fs = File.Open(filePath, FileMode.OpenOrCreate);                            //create FileStream
+            fs = File.Open(filePath02, FileMode.OpenOrCreate);                            //create FileStream
             string randomString = "cucu ruku" + Environment.NewLine + "master juku";    //make some string(random text)
             byte[] bytesFromRandomString = Encoding.Default.GetBytes(randomString);     //convert it to bytes and write into byte array
 
@@ -81,8 +51,8 @@ namespace WorkingWithFilesInCSh
 
         private void buttonFileStreamRead_Click(object sender, EventArgs e)
         {
-            fs = File.Open(filePath, FileMode.OpenOrCreate);    //open FileStream
-            FileInfo file = new FileInfo(filePath);             //make FileInfo var for retrieving file length later
+            fs = File.Open(filePath02, FileMode.OpenOrCreate);    //open FileStream
+            FileInfo file = new FileInfo(filePath02);             //make FileInfo var for retrieving file length later
             
             byte[] byteArrFromFile = new byte[file.Length];     //create byte array same length as file
 
@@ -90,9 +60,60 @@ namespace WorkingWithFilesInCSh
             {
                 byteArrFromFile[i] = (byte)fs.ReadByte();       //use FileStream to read file byte by byte
             }
-            textBoxFileStream.AppendText(Encoding.Default.GetString(byteArrFromFile));  //convert FileStream to string and output to textBox
+            textBoxStreams.AppendText(Encoding.Default.GetString(byteArrFromFile));  //convert FileStream to string and output to textBox
 
             fs.Close();
+
+        }
+
+        private void buttonTxtFiles_Click(object sender, EventArgs e)
+        {
+            //get txt files from directory and its subdirs
+            DirectoryInfo myDataDir = new DirectoryInfo(@"C:\Users\d.oligov\Csharp");
+            FileInfo[] txtFiles = myDataDir.GetFiles("*.txt", SearchOption.AllDirectories);
+
+            //print them out to textBox
+            foreach (FileInfo fi in txtFiles)
+            {
+                textBoxOutput.AppendText(Environment.NewLine + fi.FullName + " size: " + fi.Length);
+            }
+        }
+
+        private void buttonReadFromFile_Click(object sender, EventArgs e)
+        {
+            //read all lines from a file and write them to textBox
+            int lineCounter = 0;
+            foreach (string name in File.ReadAllLines(filePath02))
+            {
+                lineCounter++;
+                textBoxOutput.AppendText(String.Format(Environment.NewLine + "{0,-5} : {1}", lineCounter, name));
+            }
+        }
+
+        private void buttonWriteToFile_Click(object sender, EventArgs e)
+        {
+            DirectoryInfo newDir = new DirectoryInfo(@"C:\Users\d.oligov\Csharp");      //create DirectoryInfo
+            //if (!newDir.Exists) { newDir.Create(); }                                  //creare directory if it doesnt exist
+            string filePath01 = newDir.FullName + "\\a.txt";                              //create filePath string
+            FileInfo newFile = new FileInfo(filePath01);                                  //create FileInfo
+            string textToWrite = textBoxOutput.Text;
+
+
+
+            using (StreamWriter sw = newFile.CreateText())
+            {
+                sw.Write(textToWrite);
+            }
+
+            //File.AppendAllText(newDir.FullName + "\\a.txt", textToWrite); //write it to file 2nd way
+        }
+
+        private void buttonStreamWriter_Click(object sender, EventArgs e)
+        {
+            StreamWriter sw = File.AppendText(filePath03);
+
+            sw.Write(DateTime.Today);
+            sw.Close();
 
         }
     }
